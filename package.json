@@ -1,0 +1,29 @@
+{
+  "name": "xco",
+  "displayName": "StarNight Engine Language Support",
+  "description": "Language Support For Starnight Engine Script",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "ses",
+      "aliases": ["ses"],
+      "extensions": [".ses"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "ses",
+      "scopeName": "source.ses",
+      "path": "./syntaxes/xco.tmLanguage.json"
+    }],
+    "snippets": [{
+      "language": "ses",
+      "path": "./snippets/snippets.json"
+    }]    
+  }
+}

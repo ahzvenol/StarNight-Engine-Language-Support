@@ -1,0 +1,89 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "ses",
+    "patterns": [{
+        "include": "#command"
+    }],
+    "repository": {
+        "command": {
+            "patterns": [{
+                "include": "#comment"
+            }, {
+                "include": "#decollator"
+            }, {
+                "include": "#sign"
+            }, {
+                "include": "#args"
+            }]
+        },
+        "sign": {
+            "match": "(@)([\u4e00-\u9fa5_a-zA-Z0-9]+)(\\s+)",
+            "captures": {
+                "1": {
+                    "name": "support.class.ses",
+                    "patterns": [{
+                        "include": "#keywords"
+                    }]
+                },
+                "2": {
+                    "name": "meta.character.ses"
+                }
+            }
+        },
+        "args": {
+            "match": "([\u4e00-\u9fa5_a-zA-Z0-9]+)(:|：)([^(\\s)]+)(\\s*)",
+            "captures": {
+                "1": {
+                    "name": "variable.other.ses"
+                },
+                "2": {
+                    "patterns": [{
+                        "include": "#keywords"
+                    }]
+                },
+                "3": {
+                    "patterns": [{
+                        "include": "#strings"
+                    }, {
+                        "include": "#constants"
+                    }]
+                }
+            }
+        },
+        "keywords": {
+            "patterns": [{
+                "name": "keyword.control.ses",
+                "match": "(@|:|：)"
+            }]
+        },
+        "strings": {
+            "name": "string.quoted.double.ses",
+            "begin": "(\"|“|”)",
+            "end": "(\"|”|“)",
+            "patterns": [{
+                "name": "constant.character.escape.ses",
+                "match": "\\\\."
+            }]
+        },
+        "constants": {
+            "patterns": [{
+                "name": "constant.language.ses",
+                "match": "(true|false)"
+            }, {
+                "name": "constant.numeric.ses",
+                "match": "-?(\\d+(\\.\\d*)?|\\d*\\.\\d+)([eE][+-]?\\d+)?[fFdD]?"
+            }]
+        },
+        "decollator": {
+            "patterns": [{
+                "name": "keyword.control.ses",
+                "match": "-{4,}"
+            }]
+        },
+        "comment": {
+            "match": "//.*",
+            "name": "comment.line.ses"
+        }
+    },
+    "scopeName": "source.ses"
+}
